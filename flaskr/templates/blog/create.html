@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title> Technomind </title>
+
+    <!-- add title that To-Do List in top center position  -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Add New Task</h1>
+            </div>
+        </div>
+
+
+
+{% endblock %}
+
+    
+{% block body %}
+
+        <!-- task tabl
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                    <th>Completed</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.task }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td>{{ task.completed }}</td>
+                    <td><a href="{{ url_for('edit_task', id=task.id) }}">Edit</a></td>
+                    <td><a href="{{ url_for('delete_task', id=task.id) }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> -->
+        
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="task">Task</label>
+                <input type="text" class="form-control" id="task" name="task">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="form-group">
+                <label for="due_date">Due Date</label>
+                <input type="text" class="form-control" id="due_date" name="due_date">
+            </div>
+            <div class="form-group">
+                <label for="completed">Completed</label>
+                <input type="text" class="form-control" id="completed" name="completed">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+
+
+{% endblock %}
+    
+    {% block footer %}
+    {% endblock %}
+        
+        {% block javascripts %}
+        {% endblock %}
+            
+            {% block stylesheets %}
+            {% endblock %}
+
