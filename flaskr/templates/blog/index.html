@@ -2,39 +2,58 @@
 
 {% block head %}
 <title>Task Master</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./static/table.css">
+
 {% endblock %}
 
 {% block body %}
 <div class="content">
     <h1 style="text-align: center">Task Master</h1>
-    {% if tasks|length < 1 %}
-    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
-    {% else %}
-    <table>
-        <tr>
-            <th>Task</th>
-            <th>Added</th>
-            <th>Actions</th>
-        </tr>
-        {% for task in tasks %}
-            <tr>
-                <td>{{ task.content }}</td>
-                <td>{{ task.date_created.date() }}</td>
-                <td>
-                    <a href="/delete/{{task.id}}">Delete</a>
-                    <br>
-                    <a href="/update/{{task.id}}">Update</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+    {% if tasks|length < 1 %} <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+        {% else %}
 
-    <div class="form">
-        <form action="/" method="POST">
-            <input type="text" name="content" id="content">
-            <input type="submit" value="Add Task">
-        </form>
-    </div>
+        <table class="styled-table" style="margin: auto; margin-top: 2%; margin-bottom: 2%;">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.content }}</td>
+                    <td>{{ task.date_created.date() }}</td>
+                    <td>
+                        <a href="/delete/{{task.id}}"><i class="glyphicon glyphicon-remove"></i></a>
+                        <a href="/update/{{task.id}}"><i class="glyphicon glyphicon-pencil"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        <div class="form" style="margin: auto; margin-top: 2%; margin-bottom: 2%; width: fit-content;">
+            <form  action="/" method="POST">
+                <div class="form-group">
+                  <label for="text">Enter a new task</label> 
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fa fa-tasks"></i>
+                      </div>
+                    </div> 
+                    <input id="content" name="content" placeholder="Ex: Completing of homeworks" type="text" class="form-control">                    
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div> 
+              </form>
+        </div>
+
+        
 </div>
 {% endblock %}
