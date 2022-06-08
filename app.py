@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flaskwebgui import FlaskUI # import FlaskUI
+
 from datetime import datetime
 
 app = Flask(__name__, template_folder="flaskr/templates/blog/", static_folder="flaskr/static/")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+ui = FlaskUI(app, width=500, height=500) # add app and parameters
+
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -61,3 +66,4 @@ def update(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # "ui.run()
